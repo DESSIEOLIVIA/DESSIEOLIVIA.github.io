@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kalkulator HP</title>
+    <style>
+        .calculator {
+        width: 300px;
+        margin: 0 auto;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 6px 10px rgb(0, 0, 0);
+        background-color: rgb(53, 51, 51);
+        }
+
+        #result {
+        width: 91%;
+        height: 50px;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 24px;
+        text-align: right;
+        border-style:outset;
+        border-radius: 6px;
+        }
+
+        .buttons button {
+        width: 60px;
+        height: 60px;
+        margin: 5px;
+        font-size: 18px;
+        border: 1px solid #bbb8b8;
+        border-radius: 100px;
+        cursor: pointer;
+        }
+
+        .operator {
+        background-color:rgb(255, 136, 1);
+        }
+    </style> 
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" readonly>
+        <div class="buttons">
+            <script>
+                const result = document.getElementById('result');
+                let currentInput = '';
+        
+            function appendNumber(number) {
+                currentInput += number;
+                result.value = currentInput;
+            }
+        
+            function appendOperator(operator) {
+                currentInput += operator;
+                result.value = currentInput;
+            }
+        
+            function clearResult() {
+                currentInput = '';
+                result.value = '';
+            }
+        
+            function calculate() {
+                result.value = eval(currentInput);
+                currentInput = '';
+        
+                if (operator === '%') {
+                    calculate = num1 / 100;
+                }
+            }
+        
+            function deleteLast() {
+                currentInput = currentInput.slice(0, -1);
+                result.value = currentInput;
+            }
+        </script>  
+            <button class="btn operator" onclick="clearResult()">AC</button>
+            <button class="btn operator" onclick="deleteLast()">DEL</button>
+            <button class="btn operator" onclick="appendOperator('%')">%</button>
+            <button class="btn operator" onclick="appendOperator('/')">/</button>
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(9)">9</button>
+            <button class="btn operator" onclick="appendOperator('*')">x</button>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button class="btn operator" onclick="appendOperator('-')">-</button>
+            <button onclick="appendNumber(1)">1</button>
+            <button onclick="appendNumber(2)">2</button>
+            <button onclick="appendNumber(3)">3</button>
+            <button class="btn operator" onclick="appendOperator('+')">+</button>
+            <button onclick="appendNumber('00')">00</button>
+            <button onclick="appendNumber(0)">0</button>
+            <button onclick="appendOperator('.')">.</button>
+            <button class="btn operator" onclick="calculate()">=</button>
+        </div>
+    </div>
+</body>
+</html>
